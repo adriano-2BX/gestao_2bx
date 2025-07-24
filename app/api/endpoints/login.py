@@ -30,3 +30,17 @@ def login_for_access_token(
         data={"sub": user.email}, expires_delta=access_token_expires
     )
     return {"access_token": access_token, "token_type": "bearer"}
+
+# --- ROTA DE DEPURAÇÃO TEMPORÁRIA ---
+@router.get("/gerar-hash/{senha}", tags=["Debug"])
+def gerar_hash_senha(senha: str):
+    """
+    Endpoint temporário para gerar um hash de senha válido.
+    Use-o para obter o hash correto e depois remova este endpoint.
+    """
+    hash_gerado = security.get_password_hash(senha)
+    print("==================================================")
+    print(f"HASH GERADO PARA A SENHA '{senha}':")
+    print(hash_gerado)
+    print("==================================================")
+    return {"senha_original": senha, "hash_gerado": hash_gerado}
