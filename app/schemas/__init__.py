@@ -5,4 +5,5 @@ from .usuario import Usuario, UsuarioCreate, UsuarioBase
 from .token import Token, TokenData
 from .servidor import Servidor, ServidorCreate, ServidorUpdate, ServidorBase
 from .aplicacao import Aplicacao, AplicacaoCreate, AplicacaoUpdate, AplicacaoBase
-from .dominio import Dominio, DominioCreate, DominioUpdate, DominioBase # Adicione esta linha
+from .dominio import Dominio, DominioCreate, DominioUpdate, DominioBase
+from .certificado_ssl import CertificadoSSL, CertificadoSSLCreate, CertificadoSSLUpdate, CertificadoSSLBase # Adicione esta linha
