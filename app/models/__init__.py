@@ -18,3 +18,6 @@ from .timesheet import Timesheet
 from .catalogo_servico import CatalogoServico
 from .assinatura import Assinatura
 from .fatura import Fatura, ItemFatura
+from .llm_modelo import LLMModelo
+from .llm_preco import LLMPreco
+from .llm_custo_uso import LLMCustoUso
