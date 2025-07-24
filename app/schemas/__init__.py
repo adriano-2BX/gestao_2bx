@@ -13,3 +13,4 @@ from .permissao import Permissao, PermissaoCreate, PermissaoBase
 from .papel import Papel, PapelCreate, PapelUpdate, PapelBase, LinkPermissaoToPapel
 from .time import Time, TimeCreate, TimeUpdate, TimeBase, LinkUsuarioToTime
 from .credencial import Credencial, CredencialCreate, CredencialUpdate, CredencialRevelada
+from .fluxo_automacao import FluxoAutomacao, FluxoAutomacaoCreate, FluxoAutomacaoUpdate, FluxoAutomacaoBase # Adicione esta linha
