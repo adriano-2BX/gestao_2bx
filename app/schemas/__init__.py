@@ -7,3 +7,4 @@ from .servidor import Servidor, ServidorCreate, ServidorUpdate, ServidorBase
 from .aplicacao import Aplicacao, AplicacaoCreate, AplicacaoUpdate, AplicacaoBase
 from .dominio import Dominio, DominioCreate, DominioUpdate, DominioBase
 from .certificado_ssl import CertificadoSSL, CertificadoSSLCreate, CertificadoSSLUpdate, CertificadoSSLBase # Adicione esta linha
+from .conexao import Conexao, ConexaoCreate, ConexaoBase # Adicione esta linha
