@@ -20,3 +20,6 @@ from .timesheet import Timesheet, TimesheetCreate, TimesheetUpdate, TimesheetBas
 from .catalogo_servico import CatalogoServico, CatalogoServicoCreate, CatalogoServicoBase
 from .assinatura import Assinatura, AssinaturaCreate, AssinaturaBase
 from .fatura import Fatura, FaturaBase, ItemFatura, ItemFaturaBase
+from .llm_modelo import LLMModelo, LLMModeloCreate, LLMModeloBase
+from .llm_preco import LLMPreco, LLMPrecoCreate, LLMPrecoBase
+from .llm_custo_uso import LLMCustoUso, LLMCustoUsoCreate, LLMCustoUsoBase
