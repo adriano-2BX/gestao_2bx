@@ -5,4 +5,5 @@ from .usuario import Usuario
 from .papel import Papel, Permissao
 from .servidor import Servidor
 from .aplicacao import Aplicacao
-from .dominio import Dominio # Adicione esta linha
+from .dominio import Dominio
+from .certificado_ssl import CertificadoSSL # Adicione esta linha
