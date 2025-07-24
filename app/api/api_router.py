@@ -2,7 +2,8 @@
 from fastapi import APIRouter
 from .endpoints import (
     clientes, projetos, tarefas, 
-    usuarios, login, servidores, aplicacoes, dominios # 1. Importe 'dominios'
+    usuarios, login, servidores, 
+    aplicacoes, dominios, certificados_ssl # 1. Importe 'certificados_ssl'
 )
 
 api_router = APIRouter()
@@ -17,6 +18,7 @@ api_router.include_router(tarefas.router, prefix="/tarefas", tags=["Tarefas"])
 api_router.include_router(usuarios.router, prefix="/usuarios", tags=["Usuários"])
 api_router.include_router(servidores.router, prefix="/servidores", tags=["Servidores"])
 api_router.include_router(aplicacoes.router, prefix="/aplicacoes", tags=["Aplicações"])
-
-# 2. Adicione a nova rota de Domínios
 api_router.include_router(dominios.router, prefix="/dominios", tags=["Domínios"])
+
+# 2. Adicione a nova rota de Certificados SSL
+api_router.include_router(certificados_ssl.router, prefix="/certificados-ssl", tags=["Certificados SSL"])
