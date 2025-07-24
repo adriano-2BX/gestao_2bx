@@ -13,5 +13,8 @@ from .time import Time
 from .credencial import Credencial
 from .fluxo_automacao import FluxoAutomacao
 from .instancia_api_whatsapp import InstanciaAPIWhatsApp
-from .numero_whatsapp import NumeroWhatsApp # Adicione esta linha
-from .timesheet import Timesheet # Adicione esta linha
+from .numero_whatsapp import NumeroWhatsApp
+from .timesheet import Timesheet
+from .catalogo_servico import CatalogoServico
+from .assinatura import Assinatura
+from .fatura import Fatura, ItemFatura
