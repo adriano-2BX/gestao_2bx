@@ -11,7 +11,8 @@ from app.core.config import settings
 
 router = APIRouter()
 
-@router.post("/login/access-token", response_model=schemas.Token)
+# MUDANÇA AQUI: O caminho agora é apenas "/access-token"
+@router.post("/access-token", response_model=schemas.Token)
 def login_for_access_token(
     db: Session = Depends(get_db),
     form_data: OAuth2PasswordRequestForm = Depends()
