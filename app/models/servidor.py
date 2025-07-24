@@ -10,4 +10,5 @@ class Servidor(Base):
     ip_principal = Column(String(45))
     sistema_operacional = Column(String(100))
     descricao = Column(TEXT)
+    # CORREÇÃO AQUI
     status = Column(Enum('ATIVO', 'INATIVO', 'MANUTENCAO', 'FALHA'), nullable=False, default='ATIVO')
