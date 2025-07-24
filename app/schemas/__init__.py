@@ -14,4 +14,5 @@ from .papel import Papel, PapelCreate, PapelUpdate, PapelBase, LinkPermissaoToPa
 from .time import Time, TimeCreate, TimeUpdate, TimeBase, LinkUsuarioToTime
 from .credencial import Credencial, CredencialCreate, CredencialUpdate, CredencialRevelada
 from .fluxo_automacao import FluxoAutomacao, FluxoAutomacaoCreate, FluxoAutomacaoUpdate, FluxoAutomacaoBase
-from .instancia_api_whatsapp import InstanciaAPIWhatsApp, InstanciaAPIWhatsAppCreate, InstanciaAPIWhatsAppUpdate, InstanciaAPIWhatsAppBase # Adicione esta linha
+from .instancia_api_whatsapp import InstanciaAPIWhatsApp, InstanciaAPIWhatsAppCreate, InstanciaAPIWhatsAppUpdate, InstanciaAPIWhatsAppBase
+from .numero_whatsapp import NumeroWhatsApp, NumeroWhatsAppCreate, NumeroWhatsAppUpdate, NumeroWhatsAppBase # Adicione esta linha
