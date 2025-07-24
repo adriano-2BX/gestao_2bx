@@ -14,7 +14,9 @@ from .endpoints import (
     aplicacoes,
     dominios,
     certificados_ssl,
-    conexoes
+    conexoes,
+    fluxos_automacao,
+    instancias_api_whatsapp # 1. Importe o novo endpoint
 )
 
 api_router = APIRouter()
@@ -37,6 +39,11 @@ api_router.include_router(servidores.router, prefix="/servidores", tags=["Servid
 api_router.include_router(aplicacoes.router, prefix="/aplicacoes", tags=["Aplicações"])
 api_router.include_router(dominios.router, prefix="/dominios", tags=["Domínios"])
 api_router.include_router(certificados_ssl.router, prefix="/certificados-ssl", tags=["Certificados SSL"])
+
+# --- Rotas de Automação e Comunicação ---
+api_router.include_router(fluxos_automacao.router, prefix="/fluxos-automacao", tags=["Fluxos de Automação"])
+# 2. Adicione a nova rota
+api_router.include_router(instancias_api_whatsapp.router, prefix="/instancias-api-whatsapp", tags=["Instâncias API WhatsApp"])
 
 # --- Rota Estrutural de Conexões ---
 api_router.include_router(conexoes.router, prefix="/conexoes", tags=["Conexões"])
