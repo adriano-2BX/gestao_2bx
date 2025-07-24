@@ -12,4 +12,5 @@ from .conexao import Conexao
 from .time import Time
 from .credencial import Credencial
 from .fluxo_automacao import FluxoAutomacao
-from .instancia_api_whatsapp import InstanciaAPIWhatsApp # Adicione esta linha
+from .instancia_api_whatsapp import InstanciaAPIWhatsApp
+from .numero_whatsapp import NumeroWhatsApp # Adicione esta linha
