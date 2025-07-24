@@ -67,10 +67,4 @@ api_router.include_router(llm_custos.router, prefix="/llm/custos", tags=["LLM - 
 # --- Rota Estrutural de Conexões ---
 api_router.include_router(conexoes.router, prefix="/conexoes", tags=["Conexões"])
 
-# A linha com erro de indentação que estava aqui foi removida.
-
-    access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
-    access_token = security.create_access_token(
-        data={"sub": user.email}, expires_delta=access_token_expires
-    )
-    return {"access_token": access_token, "token_type": "bearer"}
+# A linha com o erro de indentação que estava aqui foi removida.
