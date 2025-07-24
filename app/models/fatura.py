@@ -1,4 +1,5 @@
-from sqlalchemy import Column, Integer, String, ENUM, DATE, DECIMAL, ForeignKey
+# app/models/fatura.py
+from sqlalchemy import Column, Integer, String, Enum, DATE, DECIMAL, ForeignKey
 from sqlalchemy.orm import relationship
 from ..core.db import Base
 class Fatura(Base):
@@ -10,14 +11,7 @@ class Fatura(Base):
     data_emissao = Column(DATE, nullable=False)
     data_vencimento = Column(DATE, nullable=False)
     data_pagamento = Column(DATE)
-    status = Column(ENUM('PENDENTE', 'PAGA', 'VENCIDA', 'CANCELADA'), nullable=False)
+    # CORREÇÃO AQUI
+    status = Column(Enum('PENDENTE', 'PAGA', 'VENCIDA', 'CANCELADA'), nullable=False)
     itens = relationship("ItemFatura", back_populates="fatura")
-class ItemFatura(Base):
-    __tablename__ = "itens_fatura"
-    id = Column(Integer, primary_key=True, index=True)
-    fatura_id = Column(Integer, ForeignKey("faturas.id"), nullable=False)
-    descricao = Column(String(255), nullable=False)
-    quantidade = Column(DECIMAL(10, 2), nullable=False)
-    valor_unitario = Column(DECIMAL(10, 2), nullable=False)
-    valor_total_item = Column(DECIMAL(10, 2), nullable=False)
-    fatura = relationship("Fatura", back_populates="itens")
+#... (o resto do arquivo ItemFatura permanece igual)
