@@ -1,5 +1,6 @@
 # app/models/usuario.py
-from sqlalchemy import Column, Integer, String, ENUM, TIMESTAMP, ForeignKey
+# CORREÇÃO 1: Importar 'Enum' com 'E' maiúsculo
+from sqlalchemy import Column, Integer, String, Enum, TIMESTAMP, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from ..core.db import Base
@@ -13,11 +14,11 @@ class Usuario(Base):
     email = Column(String(255), unique=True, index=True, nullable=False)
     senha_hash = Column(String(255), nullable=False)
     cargo = Column(String(150))
-    status = Column(ENUM('ATIVO', 'INATIVO', 'PENDENTE'), nullable=False, default='PENDENTE')
+    # CORREÇÃO 2: Usar 'Enum' com 'E' maiúsculo
+    status = Column(Enum('ATIVO', 'INATIVO', 'PENDENTE'), nullable=False, default='PENDENTE')
     papel_id = Column(Integer, ForeignKey("papeis.id"))
     data_criacao = Column(TIMESTAMP, server_default=func.now())
 
     papel = relationship("Papel")
 
-    # A LINHA ABAIXO FOI CORRIGIDA. O TEXTO EXTRA '= Column(...)' FOI REMOVIDO.
     times = relationship("Time", secondary=usuario_time, back_populates="usuarios")
