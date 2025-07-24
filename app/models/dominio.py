@@ -1,5 +1,5 @@
 # app/models/dominio.py
-from sqlalchemy import Column, Integer, String, DATE, ENUM, DECIMAL, ForeignKey
+from sqlalchemy import Column, Integer, String, DATE, Enum, DECIMAL, ForeignKey
 from ..core.db import Base
 
 class Dominio(Base):
@@ -11,5 +11,6 @@ class Dominio(Base):
     provedor_registro = Column(String(100))
     data_registro = Column(DATE)
     data_expiracao = Column(DATE, nullable=False)
+    # CORREÇÃO AQUI
     status_dominio = Column(Enum('ATIVO', 'EXPIRADO', 'EM_REDENCAO', 'PENDENTE'), nullable=False, default='ATIVO')
     custo_anual_renovacao = Column(DECIMAL(10, 2))
