@@ -5,6 +5,8 @@ from .endpoints import (
     usuarios,
     papeis,
     permissoes,
+    times,
+    credenciais,
     clientes,
     projetos,
     tarefas,
@@ -22,6 +24,8 @@ api_router.include_router(login.router, tags=["Login"])
 api_router.include_router(usuarios.router, prefix="/usuarios", tags=["Usuários"])
 api_router.include_router(papeis.router, prefix="/papeis", tags=["Papéis (Roles)"])
 api_router.include_router(permissoes.router, prefix="/permissoes", tags=["Permissões"])
+api_router.include_router(times.router, prefix="/times", tags=["Times"])
+api_router.include_router(credenciais.router, prefix="/credenciais", tags=["Cofre de Credenciais"])
 
 # --- Rotas de Gestão de Projetos e Clientes ---
 api_router.include_router(clientes.router, prefix="/clientes", tags=["Clientes"])
@@ -36,4 +40,3 @@ api_router.include_router(certificados_ssl.router, prefix="/certificados-ssl", t
 
 # --- Rota Estrutural de Conexões ---
 api_router.include_router(conexoes.router, prefix="/conexoes", tags=["Conexões"])
-api_router.include_router(times.router, prefix="/times", tags=["Times"]) # 2. Adicione a nova rota
