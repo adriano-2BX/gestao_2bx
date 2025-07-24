@@ -14,3 +14,4 @@ from .credencial import Credencial
 from .fluxo_automacao import FluxoAutomacao
 from .instancia_api_whatsapp import InstanciaAPIWhatsApp
 from .numero_whatsapp import NumeroWhatsApp # Adicione esta linha
+from .timesheet import Timesheet # Adicione esta linha
