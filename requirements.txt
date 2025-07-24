@@ -9,3 +9,5 @@ python-jose[cryptography]
 email-validator
 cryptography
 python-multipart
+bcrypt
+
