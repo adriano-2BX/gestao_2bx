@@ -1,30 +1,73 @@
-# app/api/endpoints/login.py
-from fastapi import APIRouter, Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordRequestForm
-from sqlalchemy.orm import Session
-from datetime import timedelta
+# app/api/api_router.py
+from fastapi import APIRouter
+from .endpoints import (
+    login,
+    usuarios,
+    papeis,
+    permissoes,
+    times,
+    credenciais,
+    clientes,
+    projetos,
+    tarefas,
+    servidores,
+    aplicacoes,
+    dominios,
+    certificados_ssl,
+    conexoes,
+    fluxos_automacao,
+    instancias_api_whatsapp,
+    numeros_whatsapp,
+    timesheets,
+    catalogo_servicos,
+    assinaturas,
+    faturas,
+    llm_modelos,
+    llm_precos,
+    llm_custos
+)
 
-from app import models, schemas
-from app.core.db import get_db
-from app.core import security
-from app.core.config import settings
+api_router = APIRouter()
 
-router = APIRouter()
+# --- Rotas de Autenticação e Governança ---
+# Adicionamos o prefix="/login" para organizar a rota de autenticação.
+api_router.include_router(login.router, prefix="/login", tags=["Login"])
+api_router.include_router(usuarios.router, prefix="/usuarios", tags=["Usuários"])
+api_router.include_router(papeis.router, prefix="/papeis", tags=["Papéis (Roles)"])
+api_router.include_router(permissoes.router, prefix="/permissoes", tags=["Permissões"])
+api_router.include_router(times.router, prefix="/times", tags=["Times"])
+api_router.include_router(credenciais.router, prefix="/credenciais", tags=["Cofre de Credenciais"])
 
-# O caminho agora é apenas "/access-token", pois o prefixo "/login" será adicionado no router principal.
-@router.post("/access-token", response_model=schemas.Token)
-def login_for_access_token(
-    db: Session = Depends(get_db),
-    form_data: OAuth2PasswordRequestForm = Depends()
-):
-    user = db.query(models.Usuario).filter(models.Usuario.email == form_data.username).first()
-    if not user or not security.verify_password(form_data.password, user.senha_hash):
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="E-mail ou senha incorretos",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
-    
+# --- Rotas de Gestão de Projetos e Clientes ---
+api_router.include_router(clientes.router, prefix="/clientes", tags=["Clientes"])
+api_router.include_router(projetos.router, prefix="/projetos", tags=["Projetos"])
+api_router.include_router(tarefas.router, prefix="/tarefas", tags=["Tarefas"])
+
+# --- Rotas Financeiras e de Recursos ---
+api_router.include_router(timesheets.router, prefix="/timesheets", tags=["Timesheets (Apontamento de Horas)"])
+api_router.include_router(catalogo_servicos.router, prefix="/catalogo-servicos", tags=["Catálogo de Serviços"])
+api_router.include_router(assinaturas.router, prefix="/assinaturas", tags=["Assinaturas"])
+api_router.include_router(faturas.router, prefix="/faturas", tags=["Faturas"])
+
+# --- Rotas de Infraestrutura e Ativos de TI ---
+api_router.include_router(servidores.router, prefix="/servidores", tags=["Servidores"])
+api_router.include_router(aplicacoes.router, prefix="/aplicacoes", tags=["Aplicações"])
+api_router.include_router(dominios.router, prefix="/dominios", tags=["Domínios"])
+api_router.include_router(certificados_ssl.router, prefix="/certificados-ssl", tags=["Certificados SSL"])
+
+# --- Rotas de Automação e Comunicação ---
+api_router.include_router(fluxos_automacao.router, prefix="/fluxos-automacao", tags=["Fluxos de Automação"])
+api_router.include_router(instancias_api_whatsapp.router, prefix="/instancias-api-whatsapp", tags=["Instâncias API WhatsApp"])
+api_router.include_router(numeros_whatsapp.router, prefix="/numeros-whatsapp", tags=["Números de WhatsApp"])
+
+# --- Rotas de Gestão de IA (LLMs) ---
+api_router.include_router(llm_modelos.router, prefix="/llm/modelos", tags=["LLM - Modelos"])
+api_router.include_router(llm_precos.router, prefix="/llm/precos", tags=["LLM - Preços"])
+api_router.include_router(llm_custos.router, prefix="/llm/custos", tags=["LLM - Custos e Uso"])
+
+# --- Rota Estrutural de Conexões ---
+api_router.include_router(conexoes.router, prefix="/conexoes", tags=["Conexões"])
+
     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = security.create_access_token(
         data={"sub": user.email}, expires_delta=access_token_expires
