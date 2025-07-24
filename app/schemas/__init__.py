@@ -10,3 +10,4 @@ from .certificado_ssl import CertificadoSSL, CertificadoSSLCreate, CertificadoSS
 from .conexao import Conexao, ConexaoCreate, ConexaoBase # Adicione esta linha
 from .permissao import Permissao, PermissaoCreate, PermissaoBase # Adicione esta linha
 from .papel import Papel, PapelCreate, PapelUpdate, PapelBase, LinkPermissaoToPapel # Adicione esta linha
+from .time import Time, TimeCreate, TimeUpdate, TimeBase, LinkUsuarioToTime # Adicione esta linha
