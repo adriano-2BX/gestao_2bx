@@ -8,3 +8,5 @@ from .aplicacao import Aplicacao, AplicacaoCreate, AplicacaoUpdate, AplicacaoBas
 from .dominio import Dominio, DominioCreate, DominioUpdate, DominioBase
 from .certificado_ssl import CertificadoSSL, CertificadoSSLCreate, CertificadoSSLUpdate, CertificadoSSLBase # Adicione esta linha
 from .conexao import Conexao, ConexaoCreate, ConexaoBase # Adicione esta linha
+from .permissao import Permissao, PermissaoCreate, PermissaoBase # Adicione esta linha
+from .papel import Papel, PapelCreate, PapelUpdate, PapelBase, LinkPermissaoToPapel # Adicione esta linha
