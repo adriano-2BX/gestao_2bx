@@ -36,3 +36,4 @@ api_router.include_router(certificados_ssl.router, prefix="/certificados-ssl", t
 
 # --- Rota Estrutural de Conexões ---
 api_router.include_router(conexoes.router, prefix="/conexoes", tags=["Conexões"])
+api_router.include_router(times.router, prefix="/times", tags=["Times"]) # 2. Adicione a nova rota
