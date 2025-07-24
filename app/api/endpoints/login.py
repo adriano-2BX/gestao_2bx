@@ -11,7 +11,7 @@ from app.core.config import settings
 
 router = APIRouter()
 
-# MUDANÇA AQUI: O caminho agora é apenas "/access-token"
+# O caminho agora é apenas "/access-token", pois o prefixo "/login" será adicionado no router principal.
 @router.post("/access-token", response_model=schemas.Token)
 def login_for_access_token(
     db: Session = Depends(get_db),
@@ -24,7 +24,7 @@ def login_for_access_token(
             detail="E-mail ou senha incorretos",
             headers={"WWW-Authenticate": "Bearer"},
         )
-
+    
     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = security.create_access_token(
         data={"sub": user.email}, expires_delta=access_token_expires
