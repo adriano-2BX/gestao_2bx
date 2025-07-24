@@ -30,7 +30,6 @@ from .endpoints import (
 api_router = APIRouter()
 
 # --- Rotas de Autenticação e Governança ---
-# Adicionamos o prefix="/login" para organizar a rota de autenticação.
 api_router.include_router(login.router, prefix="/login", tags=["Login"])
 api_router.include_router(usuarios.router, prefix="/usuarios", tags=["Usuários"])
 api_router.include_router(papeis.router, prefix="/papeis", tags=["Papéis (Roles)"])
@@ -67,6 +66,8 @@ api_router.include_router(llm_custos.router, prefix="/llm/custos", tags=["LLM - 
 
 # --- Rota Estrutural de Conexões ---
 api_router.include_router(conexoes.router, prefix="/conexoes", tags=["Conexões"])
+
+# A linha com erro de indentação que estava aqui foi removida.
 
     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = security.create_access_token(
