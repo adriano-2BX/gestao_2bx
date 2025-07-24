@@ -8,6 +8,7 @@ from app import models, schemas
 from app.core.db import get_db
 from app.core.config import settings
 
+# Atualizamos a tokenUrl para o caminho completo e correto, que a documentação usará.
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/login/access-token")
 
 def get_current_user(
@@ -28,8 +29,7 @@ def get_current_user(
         token_data = schemas.TokenData(email=email)
     except JWTError:
         raise credentials_exception
-
-    # Modificação para carregar o papel e as permissões de forma otimizada
+    
     user = db.query(models.Usuario).options(
         joinedload(models.Usuario.papel).joinedload(models.Papel.permissoes)
     ).filter(models.Usuario.email == token_data.email).first()
@@ -48,14 +48,14 @@ def require_permission(permission_name: str):
                 status_code=status.HTTP_403_FORBIDDEN,
                 detail="Usuário não possui um papel definido."
             )
-
-        user_permissions = {p.nome for p in current_user.papel.permissooses}
-
+        
+        user_permissions = {p.nome for p in current_user.papel.permissoes}
+        
         if permission_name not in user_permissions:
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
                 detail="O usuário não tem permissão para executar esta ação."
             )
         return current_user
-
+    
     return dependency
