@@ -15,5 +15,8 @@ from .time import Time, TimeCreate, TimeUpdate, TimeBase, LinkUsuarioToTime
 from .credencial import Credencial, CredencialCreate, CredencialUpdate, CredencialRevelada
 from .fluxo_automacao import FluxoAutomacao, FluxoAutomacaoCreate, FluxoAutomacaoUpdate, FluxoAutomacaoBase
 from .instancia_api_whatsapp import InstanciaAPIWhatsApp, InstanciaAPIWhatsAppCreate, InstanciaAPIWhatsAppUpdate, InstanciaAPIWhatsAppBase
-from .numero_whatsapp import NumeroWhatsApp, NumeroWhatsAppCreate, NumeroWhatsAppUpdate, NumeroWhatsAppBase # Adicione esta linha
-from .timesheet import Timesheet, TimesheetCreate, TimesheetUpdate, TimesheetBase # Adicione esta linha
+from .numero_whatsapp import NumeroWhatsApp, NumeroWhatsAppCreate, NumeroWhatsAppUpdate, NumeroWhatsAppBase
+from .timesheet import Timesheet, TimesheetCreate, TimesheetUpdate, TimesheetBase
+from .catalogo_servico import CatalogoServico, CatalogoServicoCreate, CatalogoServicoBase
+from .assinatura import Assinatura, AssinaturaCreate, AssinaturaBase
+from .fatura import Fatura, FaturaBase, ItemFatura, ItemFaturaBase
