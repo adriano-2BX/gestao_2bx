@@ -11,4 +11,5 @@ from .certificado_ssl import CertificadoSSL
 from .conexao import Conexao
 from .time import Time
 from .credencial import Credencial
-from .fluxo_automacao import FluxoAutomacao # Adicione esta linha
+from .fluxo_automacao import FluxoAutomacao
+from .instancia_api_whatsapp import InstanciaAPIWhatsApp # Adicione esta linha
