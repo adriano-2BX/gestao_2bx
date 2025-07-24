@@ -1,7 +1,7 @@
 # app/api/endpoints/llm_custos.py
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from typing import List, Optional # Adicione 'Optional' a esta linha de importação
+from typing import List, Optional # Adicione 'Optional' aqui
 from app import models, schemas
 from app.core.db import get_db
 from app.api.deps import require_permission
@@ -19,7 +19,7 @@ def log_llm_usage(
     preco_atual = db.query(models.LLMPreco).filter(models.LLMPreco.modelo_id == usage.modelo_id).order_by(models.LLMPreco.data_vigor.desc()).first()
     if not preco_atual:
         raise HTTPException(status_code=404, detail=f"Tabela de preços para o modelo id {usage.modelo_id} não encontrada.")
-
+    
     # 2. Calcular o custo
     custo_entrada = (usage.tokens_entrada / 1_000_000) * float(preco_atual.preco_milhao_tokens_entrada)
     custo_saida = (usage.tokens_saida / 1_000_000) * float(preco_atual.preco_milhao_tokens_saida)
