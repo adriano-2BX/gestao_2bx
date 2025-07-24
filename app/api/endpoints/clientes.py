@@ -3,8 +3,10 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
 
-from .... import models, schemas # Usamos .... para subir 4 níveis na estrutura de pastas
-from ....core.db import get_db
+# --- LINHAS CORRIGIDAS ---
+from app import models, schemas
+from app.core.db import get_db
+# -------------------------
 
 router = APIRouter()
 
@@ -13,6 +15,7 @@ def create_cliente(cliente: schemas.ClienteCreate, db: Session = Depends(get_db)
     """
     Cria um novo cliente no banco de dados.
     """
+    # Acessamos o modelo de cliente através de models.cliente.Cliente
     db_cliente = models.cliente.Cliente(**cliente.model_dump())
     db.add(db_cliente)
     db.commit()
@@ -24,5 +27,6 @@ def read_clientes(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)
     """
     Retorna uma lista de clientes com paginação.
     """
+    # Acessamos o modelo de cliente através de models.cliente.Cliente
     clientes = db.query(models.cliente.Cliente).offset(skip).limit(limit).all()
     return clientes
