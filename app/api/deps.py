@@ -1,16 +1,13 @@
 # app/api/deps.py
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from jose import JWTError, jwt
 
 from app import models, schemas
 from app.core.db import get_db
 from app.core.config import settings
-from app.core import security
 
-# Esta linha cria um esquema de segurança que espera um token no cabeçalho
-# Authorization: Bearer <token>
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/login/access-token")
 
 def get_current_user(
@@ -32,7 +29,33 @@ def get_current_user(
     except JWTError:
         raise credentials_exception
 
-    user = db.query(models.Usuario).filter(models.Usuario.email == token_data.email).first()
+    # Modificação para carregar o papel e as permissões de forma otimizada
+    user = db.query(models.Usuario).options(
+        joinedload(models.Usuario.papel).joinedload(models.Papel.permissoes)
+    ).filter(models.Usuario.email == token_data.email).first()
+
     if user is None:
         raise credentials_exception
     return user
+
+def require_permission(permission_name: str):
+    """
+    Cria uma dependência que verifica se o usuário logado tem uma permissão específica.
+    """
+    def dependency(current_user: models.Usuario = Depends(get_current_user)) -> models.Usuario:
+        if not current_user.papel:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Usuário não possui um papel definido."
+            )
+
+        user_permissions = {p.nome for p in current_user.papel.permissooses}
+
+        if permission_name not in user_permissions:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="O usuário não tem permissão para executar esta ação."
+            )
+        return current_user
+
+    return dependency
