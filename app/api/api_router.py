@@ -22,3 +22,6 @@ api_router.include_router(dominios.router, prefix="/dominios", tags=["Domínios"
 
 # 2. Adicione a nova rota de Certificados SSL
 api_router.include_router(certificados_ssl.router, prefix="/certificados-ssl", tags=["Certificados SSL"])
+# Rota Estrutural de Conexões
+# 2. Adicione a nova rota de Conexões
+api_router.include_router(conexoes.router, prefix="/conexoes", tags=["Conexões"])
