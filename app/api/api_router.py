@@ -2,7 +2,7 @@
 from fastapi import APIRouter
 from .endpoints import (
     clientes, projetos, tarefas, 
-    usuarios, login, servidores, aplicacoes # 1. Importe 'aplicacoes'
+    usuarios, login, servidores, aplicacoes, dominios # 1. Importe 'dominios'
 )
 
 api_router = APIRouter()
@@ -16,6 +16,7 @@ api_router.include_router(projetos.router, prefix="/projetos", tags=["Projetos"]
 api_router.include_router(tarefas.router, prefix="/tarefas", tags=["Tarefas"])
 api_router.include_router(usuarios.router, prefix="/usuarios", tags=["Usuários"])
 api_router.include_router(servidores.router, prefix="/servidores", tags=["Servidores"])
-
-# 2. Adicione a nova rota de Aplicações
 api_router.include_router(aplicacoes.router, prefix="/aplicacoes", tags=["Aplicações"])
+
+# 2. Adicione a nova rota de Domínios
+api_router.include_router(dominios.router, prefix="/dominios", tags=["Domínios"])
