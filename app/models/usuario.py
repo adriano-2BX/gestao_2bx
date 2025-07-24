@@ -1,5 +1,6 @@
 # app/models/usuario.py
 from sqlalchemy import Column, Integer, String, ENUM, TIMESTAMP, ForeignKey
+from sqlalchemy.orm import relationship # Importe 'relationship'
 from sqlalchemy.sql import func
 from ..core.db import Base
 
@@ -14,3 +15,6 @@ class Usuario(Base):
     status = Column(ENUM('ATIVO', 'INATIVO', 'PENDENTE'), nullable=False, default='PENDENTE')
     papel_id = Column(Integer, ForeignKey("papeis.id"))
     data_criacao = Column(TIMESTAMP, server_default=func.now())
+
+    # Linha adicionada para criar o relacionamento com a tabela de papéis
+    papel = relationship("Papel")
