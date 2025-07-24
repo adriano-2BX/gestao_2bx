@@ -16,3 +16,4 @@ from .credencial import Credencial, CredencialCreate, CredencialUpdate, Credenci
 from .fluxo_automacao import FluxoAutomacao, FluxoAutomacaoCreate, FluxoAutomacaoUpdate, FluxoAutomacaoBase
 from .instancia_api_whatsapp import InstanciaAPIWhatsApp, InstanciaAPIWhatsAppCreate, InstanciaAPIWhatsAppUpdate, InstanciaAPIWhatsAppBase
 from .numero_whatsapp import NumeroWhatsApp, NumeroWhatsAppCreate, NumeroWhatsAppUpdate, NumeroWhatsAppBase # Adicione esta linha
+from .timesheet import Timesheet, TimesheetCreate, TimesheetUpdate, TimesheetBase # Adicione esta linha
