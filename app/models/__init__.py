@@ -7,3 +7,4 @@ from .servidor import Servidor
 from .aplicacao import Aplicacao
 from .dominio import Dominio
 from .certificado_ssl import CertificadoSSL # Adicione esta linha
+from .conexao import Conexao # Adicione esta linha
